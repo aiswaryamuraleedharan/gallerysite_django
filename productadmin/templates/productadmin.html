@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ProductAdmin Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- custom css -->
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    </head>
+    <body>
+        <h2 class='text-center py-5'>Product admin Details - Form - Cart</h2>
+
+        <form method ='POST' enctype="multipart/form-data" class='text-center'>
+            {%csrf_token%}
+            {{form}}
+            <input type='submit'>
+        </form>
+
+        <div class='container pt-5'>
+            <div class='row justify-content-evenly text-center'>
+               
+                    {% for i in data%}
+
+                    <div class="card me-5 mb-5" style="width: 18rem;">
+                        <img src= {{i.image.url}}  class="card-img-top" alt="image">
+                        <div class="card-body">
+                            <h5 class="card-title"> {{i.name}} </h5>
+                            <p class="card-text"> {{i.price}} </p>
+                            
+                            <a href='{% url 'update' i.id %}' class='btn btn-primary' onclick="return confirm('Do you want to Update?')">Edit</a> 
+                            <a href='{% url 'delete' i.id %}' class='btn btn-danger' onclick="return confirm('Do you want to Delete?')">Delete</a>
+
+                        </div>
+                    </div>
+
+                    {%endfor%}   
+                
+            </div>
+        </div> 
+        
+
+        <!-- bootstrap js  -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/f8207eff8a.js" crossorigin="anonymous"></script>
+
+        <!-- custom script -->
+        <script type="text/javascript" src="js/java1.js">
+    </body>
+</html>
